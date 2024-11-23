@@ -1,0 +1,35 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "btw.arminias.seasons.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BiomeGenBaseMixin",
+    "BiomeGenJungleMixin",
+    "BiomeGenSwampMixin",
+    "BlockCropsMixin",
+    "BlockGrassMixin",
+    "BlockLeavesBaseMixin",
+    "BlockLeavesMixin",
+    "ChunkProviderGenerateMixin",
+    "CropsBlockMixin",
+    "DailyGrowthCropsBlockMixin",
+    "EntityRendererMixin",
+    "HempCropBlockMixin",
+    "IceBlockMixin",
+    "LeavesBlockMixin",
+    "MinecraftServerMixin",
+    "Packet63WorldParticlesAccessor",
+    "RenderGlobalMixin",
+    "SnowCoverBlockMixin",
+    "StemBlockMixin",
+    "WorldMixin",
+    "WorldProviderMixin"
+  ],
+  "client": [
+    "GuiCreateWorldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "seasonsaddon",
+  "version": "${version}",
+
+  "name": "Seasons Addon",
+  "description": "This is the seasons addon. It adds seasons and some stuff around it!",
+  "authors": [
+    "Arminias"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC-BY-4.0",
+  "icon": "assets/seasonsaddon/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "btw.arminias.seasons.SeasonsAddonMod"
+    ],
+    "btw:addon": [
+      "btw.arminias.seasons.SeasonsAddon"
+    ]
+  },
+  "mixins": [
+    "seasonsaddon.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
