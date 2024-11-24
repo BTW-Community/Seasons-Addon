@@ -21,5 +21,6 @@ public class MinecraftServerMixin {
             this.worldServers[0].setData(SeasonsAddon.YEAR_LENGTH, SeasonsAddonMod.YEAR_LENGTH_TEMP_VALUE);
         }
         SeasonsAddonMod.YEAR_LENGTH_VALUE_S = this.worldServers[0].getData(SeasonsAddon.YEAR_LENGTH);
+        SeasonsAddonMod.YEAR_LENGTH_VALUE = this.worldServers[0].getData(SeasonsAddon.YEAR_LENGTH);
     }
 }
