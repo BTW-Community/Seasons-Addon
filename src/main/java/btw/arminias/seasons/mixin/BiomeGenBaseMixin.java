@@ -27,6 +27,8 @@ public abstract class BiomeGenBaseMixin implements BiomeCustomSeason {
 
     @Shadow public abstract float getFloatRainfall();
 
+    @Shadow public abstract boolean getEnableSnow();
+
     @Unique
     private SplineInterpolator sp_temp;
     @Unique
@@ -97,6 +99,8 @@ public abstract class BiomeGenBaseMixin implements BiomeCustomSeason {
     @Inject(method = "canRainInBiome", at = @At("RETURN"), cancellable = true)
     private void noRainIfNoRainfall(CallbackInfoReturnable<Boolean> cir) {
         if (getFloatRainfall() <= 0.14F) {
+            cir.setReturnValue(false);
+        } else if (this.getEnableSnow()) {
             cir.setReturnValue(false);
         }
     }
