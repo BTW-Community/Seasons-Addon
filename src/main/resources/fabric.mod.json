@@ -9,8 +9,7 @@
     "Arminias"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://fabricmc.net/"
   },
 
   "license": "CC BY-NC 4.0",

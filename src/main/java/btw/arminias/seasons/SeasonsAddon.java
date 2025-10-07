@@ -20,12 +20,12 @@ import java.util.Map;
 import static net.minecraft.src.CommandBase.getListOfStringsMatchingLastWord;
 
 public class SeasonsAddon extends BTWAddon {
-    public static final DataEntry<Integer> YEAR_LENGTH = DataProvider.getBuilder(Integer.class)
-            .global()
+    public static final DataEntry.WorldDataEntry<Integer> YEAR_LENGTH = DataProvider.getBuilder(Integer.class)
             .name("year_length")
             .defaultSupplier(() -> -1)
             .readNBT(NBTTagCompound::getInteger)
             .writeNBT(NBTTagCompound::setInteger)
+            .global()
             .build();
     private Map<String, String> config;
 
