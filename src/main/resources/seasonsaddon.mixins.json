@@ -15,6 +15,7 @@
     "CropsBlockMixin",
     "DailyGrowthCropsBlockMixin",
     "EntityRendererMixin",
+    "GuiTextFieldAccessor",
     "HempCropBlockMixin",
     "IceBlockMixin",
     "LeavesBlockMixin",
@@ -27,6 +28,7 @@
     "WorldProviderMixin"
   ],
   "client": [
+    "GrassColorReloadListenerMixin",
     "GuiCreateWorldMixin"
   ],
   "injectors": {

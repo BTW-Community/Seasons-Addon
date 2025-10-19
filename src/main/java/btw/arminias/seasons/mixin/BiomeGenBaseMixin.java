@@ -58,20 +58,12 @@ public abstract class BiomeGenBaseMixin implements BiomeCustomSeason {
             int seasons = seasonsAddon$getSeasons();
             seasonsAddon$setSeasonColorLookupGrass(new int[seasons]);
             seasonsAddon$setSeasonColorLookupFoliage(new int[seasons]);
-            // Only in this super class
-            updateColorCache(false);
         }
-    }
-
-    @Environment(EnvType.CLIENT)
-    @Inject(method= "setTemperatureRainfall", at = @At("RETURN"))
-    private void callGenerateColorCache(CallbackInfoReturnable<BiomeGenBase> cir) {
-        updateColorCache(true);
     }
 
     @Unique
     @Environment(EnvType.CLIENT)
-    private void updateColorCache(boolean override) {
+    public void seasonsAddon$updateColorCache(boolean override) {
         int seasons = seasonsAddon$getSeasons();
         for (int season = 0; season < seasons; season++) {
             float r = MathHelper.clamp_float(rainfall * seasonsAddon$getRainfallSpline().getUnit((float) season / seasons), 0F, 1F);
@@ -142,8 +134,8 @@ public abstract class BiomeGenBaseMixin implements BiomeCustomSeason {
     @Environment(EnvType.CLIENT)
     public int seasonsAddon$getMonthSpecificColorCached(int month, boolean grass, boolean override) {
         int[] arr = grass ? monthColorLookupGrass : monthColorLookupFoliage;
-        int i = arr[month];
-        if (i == 0 || override) {
+        int color = arr[month];
+        if (color == 0 || override) {
             int seasons = seasonsAddon$getSeasons();
             int months = SeasonsAddonMod.MONTHS;
             assert months > seasons;
@@ -175,9 +167,9 @@ public abstract class BiomeGenBaseMixin implements BiomeCustomSeason {
             int green = (int) sp_g.getUnit((float)month/months);
             int blue = (int) sp_b.getUnit((float)month/months);
             arr[month] = (0xFF << 24) | (red << 16) | (green << 8) | blue;
-            i = arr[month];
+            color = arr[month];
         }
-        return i;
+        return color;
     }
 
     @Unique

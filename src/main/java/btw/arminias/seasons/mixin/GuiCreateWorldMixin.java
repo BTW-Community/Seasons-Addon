@@ -7,13 +7,17 @@ import btw.arminias.seasons.SettingsProvider;
 import net.minecraft.src.GuiButton;
 import net.minecraft.src.GuiCreateWorld;
 import net.minecraft.src.GuiScreen;
+import net.minecraft.src.GuiTextField;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiCreateWorld.class)
 public abstract class GuiCreateWorldMixin extends GuiScreen implements SettingsProvider {
+    @Shadow
+    private GuiTextField textboxWorldName;
     private GuiButton buttonSeasonSettings;
     private SeasonSettings settings = SeasonSettings.REALISTIC;
 
@@ -29,7 +33,7 @@ public abstract class GuiCreateWorldMixin extends GuiScreen implements SettingsP
 
     @Inject(method = "initGui", at = @At("RETURN"))
     public void initGuiInject(CallbackInfo ci) {
-        this.buttonSeasonSettings = new GuiButton(73, 320, 60, 98, 20, "Seasons Settings");
+        this.buttonSeasonSettings = new GuiButton(73, ((GuiTextFieldAccessor) textboxWorldName).getXPos() + ((GuiTextFieldAccessor) textboxWorldName).getWidth() + 2, ((GuiTextFieldAccessor) textboxWorldName).getYPos(), 98, 20, "Seasons Settings");
         this.buttonList.add(this.buttonSeasonSettings);
     }
 

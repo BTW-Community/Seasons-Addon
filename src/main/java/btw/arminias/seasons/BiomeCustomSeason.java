@@ -3,6 +3,7 @@ package btw.arminias.seasons;
 public interface BiomeCustomSeason extends ClimateInfluenced {
     void seasonsAddon$setSeasonColorLookupGrass(int[] arr);
     void seasonsAddon$setSeasonColorLookupFoliage(int[] arr);
+    void seasonsAddon$updateColorCache(boolean override);
 
     default int seasonsAddon$getSeasonSpecificColor(int season, int color) {
         int alpha = (color >> 24) & 0xFF;
