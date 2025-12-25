@@ -1,12 +1,12 @@
 package btw.arminias.seasons;
 
-import btw.AddonHandler;
-import btw.BTWAddon;
+import api.AddonHandler;
+import api.BTWAddon;
+import api.config.AddonConfig;
 import btw.BTWMod;
 import btw.arminias.seasons.entity.EntityFXLeaf;
-import btw.world.util.data.DataEntry;
-import btw.world.util.data.DataProvider;
-import btw.world.util.difficulty.Difficulties;
+import api.world.data.DataEntry;
+import api.world.data.DataProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.server.MinecraftServer;
@@ -27,7 +27,7 @@ public class SeasonsAddon extends BTWAddon {
             .writeNBT(NBTTagCompound::setInteger)
             .global()
             .build();
-    private Map<String, String> config;
+    private AddonConfig config;
 
     public SeasonsAddon() {
         super();
@@ -135,15 +135,19 @@ public class SeasonsAddon extends BTWAddon {
 
     @Override
     public void preInitialize() {
-        this.registerProperty("FORCE_SNOW_REWORK", "true");
         YEAR_LENGTH.register();
     }
 
     @Override
-    public void handleConfigProperties(Map<String, String> propertyValues) {
-        this.config = propertyValues;
+    public void registerConfigProperties(AddonConfig config) {
+        config.registerBoolean("FORCE_SNOW_REWORK", true, "If true, enables the snow rework feature regardless of other settings.");
+    }
+
+    @Override
+    public void handleConfigProperties(AddonConfig config) {
+        this.config = config;
         try {
-            BTWMod.enableSnowRework |= Boolean.parseBoolean(this.config.get("FORCE_SNOW_REWORK"));
+            BTWMod.enableSnowRework |= this.config.getBoolean("FORCE_SNOW_REWORK");
         } catch (NumberFormatException e) {
                e.printStackTrace();
         }

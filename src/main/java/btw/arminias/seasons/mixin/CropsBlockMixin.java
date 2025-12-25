@@ -1,6 +1,6 @@
 package btw.arminias.seasons.mixin;
 
-import btw.block.blocks.CropsBlock;
+import api.block.blocks.CropsBlock;
 import btw.block.blocks.PlantsBlock;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;

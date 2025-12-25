@@ -1,8 +1,8 @@
 package btw.arminias.seasons.mixin;
 
 
-import btw.block.blocks.CropsBlock;
-import btw.block.blocks.DailyGrowthCropsBlock;
+import api.block.blocks.CropsBlock;
+import api.block.blocks.DailyGrowthCropsBlock;
 import btw.arminias.seasons.CropClimateInfluenced;
 import btw.arminias.seasons.utils.CommonFunctions;
 import btw.arminias.seasons.utils.SplineInterpolator;
@@ -38,7 +38,7 @@ public abstract class DailyGrowthCropsBlockMixin extends CropsBlock implements C
         seasonsAddon$customInit();
     }
 
-    @Inject(method = "attemptToGrow", at = @At(value = "INVOKE", target = "Lbtw/block/blocks/DailyGrowthCropsBlock;incrementGrowthLevel(Lnet/minecraft/src/World;III)V"),
+    @Inject(method = "attemptToGrow", at = @At(value = "INVOKE", target = "Lapi/block/blocks/DailyGrowthCropsBlock;incrementGrowthLevel(Lnet/minecraft/src/World;III)V"),
             cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     private void randomGrowthClimate(World world, int x, int y, int z, Random rand, CallbackInfo ci, int timeOfDay, Block blockBelow, float growthChance) {
         BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
@@ -89,7 +89,7 @@ public abstract class DailyGrowthCropsBlockMixin extends CropsBlock implements C
         ci.cancel();
     }
 
-    @Override
+    /*@Override
     public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int iFacing, float fXClick, float fYClick, float fZClick) {
         BiomeGenBase biome = world.getBiomeGenForCoords(i, k);
         float rain = biome.getFloatRainfall();
@@ -97,7 +97,7 @@ public abstract class DailyGrowthCropsBlockMixin extends CropsBlock implements C
         float mult = sp_temp.get(temp) * sp_rain.get(rain) + 0.15F;
         System.out.println(rain + ", " + temp + ", " + mult);
         return super.onBlockActivated(world, i, j, k, player, iFacing, fXClick, fYClick, fZClick);
-    }
+    }*/
 
     @Override
     public SplineInterpolator seasonsAddon$getTemperatureSpline() {
